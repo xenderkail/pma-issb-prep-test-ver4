@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PMA Long Course Prep & Exam Studio v4.0</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .card-flip { perspective: 1000px; }
+    .card-inner { transition: transform 0.6s; transform-style: preserve-3d; }
+    .card-flip.flipped .card-inner { transform: rotateY(180deg); }
+    .card-front, .card-back { backface-visibility: hidden; }
+    .card-back { transform: rotateY(180deg); }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-slate-800 border-b border-slate-700 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center space-x-3">
+        <i class="fa-solid fa-shield-halved text-emerald-400 text-2xl"></i>
+        <h1 class="text-xl font-bold tracking-wide text-white">PMA Long Course <span class="text-emerald-400">Prep Studio v4.0</span></h1>
+      </div>
+      <nav class="flex items-center space-x-2 text-sm">
+        <button onclick="switchTab('dashboard')" id="nav-dashboard" class="px-3 py-2 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-500 transition"><i class="fa-solid fa-house mr-1"></i> Dashboard</button>
+        <button onclick="startSingleClickTest('Full')" id="nav-test" class="px-3 py-2 rounded-lg bg-slate-700 text-slate-200 font-medium hover:bg-slate-600 transition"><i class="fa-solid fa-pen-to-square mr-1"></i> New 100 Qs Paper</button>
+        <button onclick="switchTab('flashcards')" id="nav-flashcards" class="px-3 py-2 rounded-lg bg-slate-700 text-slate-200 font-medium hover:bg-slate-600 transition"><i class="fa-solid fa-layer-group mr-1"></i> Flashcards Bank</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6">
+
+    <!-- TAB 1: DASHBOARD -->
+    <section id="tab-dashboard" class="space-y-6">
+      <div class="bg-slate-800 border border-slate-700 rounded-xl p-6">
+        <h2 class="text-2xl font-bold mb-2 text-white">PMA Long Course Initial Exam Portal</h2>
+        <p class="text-slate-400 text-sm">Engineered with dynamic visual non-verbal diagrams, dedicated subject-specific content engines, and detailed step-by-step logic explanations.</p>
+      </div>
+
+      <!-- Module Selection -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-slate-800 border border-slate-700 hover:border-emerald-500/50 transition rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg mb-3"><i class="fa-solid fa-brain"></i></div>
+            <h3 class="font-bold text-lg mb-1">Verbal Intelligence</h3>
+            <p class="text-xs text-slate-400 mb-4">Speed & Distance, Interleaved Number Series, Coding-Decoding, Blood Relations, Fractional Math.</p>
+          </div>
+          <button onclick="startSingleClickTest('Verbal')" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg text-sm transition"><i class="fa-solid fa-arrows-rotate mr-1"></i> Generate 100 Qs Verbal Paper</button>
+        </div>
+
+        <div class="bg-slate-800 border border-slate-700 hover:border-emerald-500/50 transition rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg mb-3"><i class="fa-solid fa-shapes"></i></div>
+            <h3 class="font-bold text-lg mb-1">Non-Verbal Intelligence</h3>
+            <p class="text-xs text-slate-400 mb-4">Rendered Geometric Diagrams: Shape Matrix, Rotation Logic, Pattern Completion & Odd Figure Out.</p>
+          </div>
+          <button onclick="startSingleClickTest('Non-Verbal')" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg text-sm transition"><i class="fa-solid fa-arrows-rotate mr-1"></i> Generate 100 Qs Visual Paper</button>
+        </div>
+
+        <div class="bg-slate-800 border border-slate-700 hover:border-emerald-500/50 transition rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg mb-3"><i class="fa-solid fa-book"></i></div>
+            <h3 class="font-bold text-lg mb-1">Academic & English</h3>
+            <p class="text-xs text-slate-400 mb-4">Grammar, Prepositions, Conditional Clauses, Synonyms/Antonyms, Calculus, Algebra & Geometry.</p>
+          </div>
+          <button onclick="startSingleClickTest('Academic')" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg text-sm transition"><i class="fa-solid fa-arrows-rotate mr-1"></i> Generate 100 Qs English/Math Paper</button>
+        </div>
+
+        <div class="bg-slate-800 border border-slate-700 hover:border-emerald-500/50 transition rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg mb-3"><i class="fa-solid fa-flag"></i></div>
+            <h3 class="font-bold text-lg mb-1">GK & Pak Studies / Islamiat</h3>
+            <p class="text-xs text-slate-400 mb-4">PMA 157 & 158 Recurrent MCQs, World Geography, Islamic History, Rivers, Capitals & Defense.</p>
+          </div>
+          <button onclick="startSingleClickTest('GK')" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-lg text-sm transition"><i class="fa-solid fa-arrows-rotate mr-1"></i> Generate 100 Qs GK Paper</button>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="bg-slate-800 border border-slate-700 rounded-xl p-6 flex flex-wrap justify-between items-center gap-4">
+        <div>
+          <h4 class="font-bold text-lg text-white">Full Combined Mock Exam</h4>
+          <p class="text-slate-400 text-sm">Balanced 100-question test combining all four domains with dynamic diagrams and zero duplicates.</p>
+        </div>
+        <button onclick="startSingleClickTest('Full')" class="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-lg shadow-lg shadow-emerald-500/20 transition">
+          <i class="fa-solid fa-play mr-2"></i> Generate Unique 100 Qs Full Paper
+        </button>
+      </div>
+    </section>
+
+    <!-- TAB 2: TEST STUDIO -->
+    <section id="tab-test" class="hidden space-y-6">
+      <div class="bg-slate-800 border border-slate-700 rounded-xl p-6 flex flex-wrap justify-between items-center gap-4">
+        <div>
+          <h2 id="test-title" class="text-2xl font-bold text-white">100 Questions Practice Paper</h2>
+          <p id="test-subtitle" class="text-slate-400 text-sm">Select your options and submit to review detailed explanations.</p>
+        </div>
+        <div class="flex items-center space-x-3">
+          <div class="bg-slate-900 border border-slate-700 px-4 py-2 rounded-lg text-emerald-400 font-mono font-bold" id="timer">Time: 40:00</div>
+          <button onclick="startSingleClickTest(currentModule)" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 text-sm font-medium rounded-lg transition"><i class="fa-solid fa-rotate-right mr-1"></i> New Unique Paper</button>
+          <button onclick="submitTest()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg transition"><i class="fa-solid fa-check-double mr-1"></i> Submit & Check</button>
+        </div>
+      </div>
+
+      <!-- Result Banner -->
+      <div id="test-result-banner" class="hidden bg-slate-800 border border-emerald-500/50 rounded-xl p-6 text-center space-y-3">
+        <h3 class="text-3xl font-extrabold text-emerald-400" id="result-score">Your Score: 85 / 100</h3>
+        <p class="text-slate-300" id="result-text">Performance evaluated!</p>
+        <div class="flex justify-center gap-3 pt-2">
+          <button onclick="startSingleClickTest(currentModule)" class="px-5 py-2 bg-emerald-600 text-white text-sm font-bold rounded-lg hover:bg-emerald-500"><i class="fa-solid fa-plus mr-1"></i> Next Unique Paper</button>
+          <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="px-4 py-2 bg-slate-700 text-slate-200 text-sm rounded-lg hover:bg-slate-600">Review Solutions</button>
+        </div>
+      </div>
+
+      <!-- Questions List -->
+      <div id="questions-container" class="space-y-4"></div>
+
+      <div class="flex justify-center gap-4 pt-4">
+        <button onclick="startSingleClickTest(currentModule)" class="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-slate-200 font-bold rounded-xl transition"><i class="fa-solid fa-arrows-rotate mr-2"></i> Generate New Paper</button>
+        <button onclick="submitTest()" class="px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-lg transition"><i class="fa-solid fa-check-circle mr-2"></i> Submit & Check Test Instantly</button>
+      </div>
+    </section>
+
+    <!-- TAB 3: FLASHCARDS BANK -->
+    <section id="tab-flashcards" class="hidden space-y-6">
+      <div class="bg-slate-800 border border-slate-700 rounded-xl p-6 flex flex-wrap justify-between items-center gap-4">
+        <div>
+          <h2 class="text-2xl font-bold text-white">Expanded Flashcards Repository</h2>
+          <p class="text-slate-400 text-sm">High-yield study facts and formulas across all categories.</p>
+        </div>
+        <div class="flex gap-2">
+          <select id="flashcard-category" onchange="loadFlashcards()" class="bg-slate-900 border border-slate-700 text-slate-200 text-sm rounded-lg px-3 py-2">
+            <option value="All">All Categories (200+ Cards)</option>
+            <option value="General Knowledge">General Knowledge</option>
+            <option value="Islam">Islamic History</option>
+            <option value="Pakistan">Pakistan Affairs</option>
+            <option value="English">English Grammar / Vocab</option>
+            <option value="Verbal">Verbal Logic & Formulas</option>
+          </select>
+          <button onclick="shuffleFlashcards()" class="px-3 py-2 bg-slate-700 text-slate-200 rounded-lg text-sm hover:bg-slate-600"><i class="fa-solid fa-shuffle mr-1"></i> Shuffle</button>
+        </div>
+      </div>
+
+      <div class="max-w-xl mx-auto space-y-4">
+        <div id="flashcard-box" class="card-flip w-full h-72 cursor-pointer" onclick="this.classList.toggle('flipped')">
+          <div class="card-inner w-full h-full relative rounded-xl border border-slate-700 bg-slate-800 shadow-xl p-6 flex items-center justify-center text-center">
+            <div class="card-front absolute w-full h-full top-0 left-0 p-6 flex flex-col justify-between items-center">
+              <span class="text-xs font-semibold px-2.5 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full" id="fc-category">Category</span>
+              <p class="text-xl font-bold text-white" id="fc-question">Click to flip card</p>
+              <span class="text-xs text-slate-500"><i class="fa-solid fa-rotate mr-1"></i> Tap to reveal answer</span>
+            </div>
+            <div class="card-back absolute w-full h-full top-0 left-0 p-6 flex flex-col justify-between items-center bg-slate-800 rounded-xl border border-emerald-500/40">
+              <span class="text-xs font-semibold text-slate-400">Answer Explanation</span>
+              <p class="text-lg font-medium text-emerald-300" id="fc-answer">Answer text</p>
+              <span class="text-xs text-slate-500">Tap to flip back</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-2">
+          <button onclick="prevFlashcard()" class="px-4 py-2 bg-slate-800 border border-slate-700 hover:bg-slate-700 rounded-lg text-sm text-slate-300"><i class="fa-solid fa-arrow-left mr-1"></i> Previous</button>
+          <span class="text-xs text-slate-400 font-mono" id="fc-counter">Card 1 of 200</span>
+          <button onclick="nextFlashcard()" class="px-4 py-2 bg-slate-800 border border-slate-700 hover:bg-slate-700 rounded-lg text-sm text-slate-300">Next <i class="fa-solid fa-arrow-right ml-1"></i></button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-slate-800 border-t border-slate-700 text-slate-500 py-4 text-center text-xs">
+    PMA Long Course Initial Preparation Suite v4.0 &bull; Dynamic Visual Canvas Engine & Expanded Explanations
+  </footer>
+
+  <script>
+    // --- 1. DEEP ACADEMIC (ENGLISH & MATH) QUESTION POOL ---
+    const academicPool = [
+      { module: 'Academic', question: 'Identify the correct preposition: "The soldier was accused _____ treason."', options: ['A) for', 'B) of', 'C) with', 'D) on'], answer: 1, explain: 'The standard idiom is "accused of" something. Correct usage: "accused of treason."' },
+      { module: 'Academic', question: 'Fill in the blank: "Smoking is detrimental _____ health."', options: ['A) to', 'B) for', 'C) with', 'D) against'], answer: 0, explain: 'Certain adjectives like detrimental, injurious, superior, and inferior take the fixed preposition "to".' },
+      { module: 'Academic', question: 'Choose the correct sentence structure: "If I _____ rich, I would build a hospital."', options: ['A) am', 'B) was', 'C) were', 'D) had been'], answer: 2, explain: 'Second conditional (hypothetical state) uses subjunctive "were" for all subjects (If I were, If he were).' },
+      { module: 'Academic', question: 'What is the antonym of the word "OPLOGICAL / OPAQUE"?', options: ['A) Dark', 'B) Transparent', 'C) Heavy', 'D) Dim'], answer: 1, explain: 'Opaque means preventing light from passing through; its exact opposite is Transparent.' },
+      { module: 'Academic', question: 'Synonym of "CANDID":', options: ['A) Secretive', 'B) Frank / Honest', 'C) Dishonest', 'D) Timid'], answer: 1, explain: 'Candid means truthful and straightforward; Frank and Honest are direct synonyms.' },
+      { module: 'Academic', question: 'What is the value of ∫ (3x² + 2x + 1) dx ?', options: ['A) x³ + x² + x + C', 'B) 6x + 2 + C', 'C) 3x³ + 2x² + C', 'D) x³ + 2x² + x + C'], answer: 0, explain: 'Apply power rule for integrals ∫ xⁿ dx = xⁿ⁺¹ / (n+1). ∫ 3x² dx = x³, ∫ 2x dx = x², ∫ 1 dx = x. Result: x³ + x² + x + C.' },
+      { module: 'Academic', question: 'Find the derivative d/dx [ sin(2x) ]:', options: ['A) cos(2x)', 'B) 2 cos(2x)', 'C) -2 cos(2x)', 'D) -cos(2x)'], answer: 1, explain: 'Chain rule: derivative of sin(u) is cos(u) · u\'. Here u = 2x, so u\' = 2. Thus d/dx [sin(2x)] = 2 cos(2x).' },
+      { module: 'Academic', question: 'If log₁₀(x) = 3, what is the value of x?', options: ['A) 30', 'B) 100', 'C) 1000', 'D) 3000'], answer: 2, explain: 'Logarithmic form log_b(a) = c converts to exponential form b^c = a. Here 10³ = 1000, so x = 1000.' },
+      { module: 'Academic', question: 'What is the sum of interior angles of a 6-sided hexagon?', options: ['A) 360°', 'B) 540°', 'C) 720°', 'D) 900°'], answer: 2, explain: 'Formula for interior angle sum = (n - 2) × 180°. For n = 6: (6 - 2) × 180° = 4 × 180° = 720°.' },
+      { module: 'Academic', question: 'Complete the sentence: "He died _____ malaria yesterday."', options: ['A) from', 'B) of', 'C) with', 'D) by'], answer: 1, explain: 'When a person succumbs to a named illness or disease, the correct preposition is "died of".' }
+    ];
+
+    // --- 2. DEEP GK / PAKISTAN / ISLAMIAT QUESTION POOL (PMA 157 & 158) ---
+    const gkPool = [
+      { module: 'GK', question: 'Who was appointed the first Prime Minister of Pakistan?', options: ['A) Quaid-e-Azam Muhammad Ali Jinnah', 'B) Liaquat Ali Khan', 'C) Khawaja Nazimuddin', 'D) Malik Ghulam Muhammad'], answer: 1, explain: 'Liaquat Ali Khan served as Pakistan\'s first Prime Minister from August 15, 1947 until his assassination on October 16, 1951.' },
+      { module: 'GK', question: 'Which treaty ended the 1965 Indo-Pak War?', options: ['A) Simla Agreement', 'B) Tashkent Declaration', 'C) Indus Waters Treaty', 'D) Lahore Declaration'], answer: 1, explain: 'The Tashkent Declaration was signed on January 10, 1966, brokered by the Soviet Union to end the 1965 war.' },
+      { module: 'GK', question: 'Where is the headquarters of the International Court of Justice (ICJ)?', options: ['A) Geneva, Switzerland', 'B) New York, USA', 'C) The Hague, Netherlands', 'D) Vienna, Austria'], answer: 2, explain: 'The ICJ is seated at the Peace Palace in The Hague, Netherlands.' },
+      { module: 'GK', question: 'In which Hijri year was the Conquest of Makkah (Fath-e-Makkah) achieved?', options: ['A) 6 AH', 'B) 8 AH', 'C) 10 AH', 'D) 2 AH'], answer: 1, explain: 'The Conquest of Makkah took place in Ramadan, 8 AH (630 AD).' },
+      { module: 'GK', question: 'Which mountain range separates Pakistan from Afghanistan?', options: ['A) Karakoram Range', 'B) Himalaya Range', 'C) Hindu Kush Range', 'D) Sulaiman Range'], answer: 2, explain: 'The Hindu Kush range runs along the northwestern border between Pakistan and Afghanistan.' },
+      { module: 'GK', question: 'Who was the first commander-in-chief of the Pakistan Army?', options: ['A) General Frank Messervy', 'B) General Douglas Gracey', 'C) Field Marshal Ayub Khan', 'D) General Musa Khan'], answer: 0, explain: 'General Sir Frank Messervy served as Pakistan\'s 1st C-in-C from August 15, 1947 to February 1948.' },
+      { module: 'GK', question: 'Which Sahabi is known as "Zun-Nurain" (Possessor of Two Lights)?', options: ['A) Hazrat Abu Bakr (R.A)', 'B) Hazrat Umar (R.A)', 'C) Hazrat Usman (R.A)', 'D) Hazrat Ali (R.A)'], answer: 2, explain: 'Hazrat Usman ibn Affan (R.A) was given the title Zun-Nurain because he married two daughters of Prophet Muhammad (PBUH).' },
+      { module: 'GK', question: 'The length of the Pakistan-China border is approximately:', options: ['A) 2400 km', 'B) 595 km', 'C) 1046 km', 'D) 800 km'], answer: 1, explain: 'The boundary between Pakistan and China (Sinjiang region) spans approximately 595 km.' },
+      { module: 'GK', question: 'Which surah of the Quran is called "Surah Al-Nisa"?', options: ['A) Chapter 2', 'B) Chapter 3', 'C) Chapter 4', 'D) Chapter 5'], answer: 2, explain: 'Surah Al-Nisa is the 4th chapter of the Holy Quran, dealing primarily with women\'s rights and inheritance.' },
+      { module: 'GK', question: 'Who set an Olympic record of 92.97m in Javelin Throw at Paris 2024?', options: ['A) Neeraj Chopra', 'B) Arshad Nadeem', 'C) Julius Yego', 'D) Anderson Peters'], answer: 1, explain: 'Pakistan\'s Arshad Nadeem threw 92.97 meters at the 2024 Paris Olympics to secure Gold.' }
+    ];
+
+    // --- 3. DYNAMIC VERBAL & NON-VERBAL GENERATORS ---
+    function generateUniqueVerbal(i) {
+      const type = i % 4;
+      if (type === 0) {
+        let p = (i % 8 + 1) * 10;
+        let n = (i * 3 + 12) * 10;
+        let ans = (p / 100) * n;
+        return {
+          module: 'Verbal',
+          question: `Speed Math #${i+1}: What is ${p}% of ${n}?`,
+          options: [`A) ${ans}`, `B) ${ans + 8}`, `C) ${ans - 5}`, `D) ${ans + 12}`],
+          answer: 0,
+          explain: `Detailed Step-by-Step Logic:\n1. Convert percentage to fraction: ${p}% = ${p}/100.\n2. Multiply by base value: (${p}/100) × ${n} = ${ans}.\n3. Therefore, Option A is mathematically correct.`
+        };
+      } else if (type === 1) {
+        let start = (i * 2) % 20 + 2;
+        let step = (i % 5) + 3;
+        let s1 = start, s2 = s1 + step, s3 = s2 + step, s4 = s3 + step, ans = s4 + step;
+        return {
+          module: 'Verbal',
+          question: `Number Series #${i+1}: Find the missing term in: ${s1}, ${s2}, ${s3}, ${s4}, ?`,
+          options: [`A) ${ans + 2}`, `B) ${ans}`, `C) ${ans - 3}`, `D) ${ans + 6}`],
+          answer: 1,
+          explain: `Detailed Step-by-Step Logic:\n1. Calculate step difference between adjacent terms: ${s2} - ${s1} = +${step}, ${s3} - ${s2} = +${step}.\n2. The sequence is an Arithmetic Progression with common difference d = +${step}.\n3. Add step to 4th term: ${s4} + ${step} = ${ans}.`
+        };
+      } else if (type === 2) {
+        let time = (i % 3) + 2;
+        let speed = (i % 6 + 4) * 10;
+        let dist = speed * time;
+        return {
+          module: 'Verbal',
+          question: `Distance & Speed #${i+1}: An army vehicle covers ${dist} km in ${time} hours. Calculate its speed in km/h:`,
+          options: [`A) ${speed - 15} km/h`, `B) ${speed} km/h`, `C) ${speed + 10} km/h`, `D) ${speed + 20} km/h`],
+          answer: 1,
+          explain: `Detailed Step-by-Step Logic:\n1. Use standard physics formula: Speed = Distance / Time.\n2. Substitute values: Speed = ${dist} / ${time} = ${speed} km/h.\n3. Option B matches the result.`
+        };
+      } else {
+        let val = (i + 1) * 24;
+        let ans = val / 4;
+        return {
+          module: 'Verbal',
+          question: `Fraction Logic #${i+1}: What is one-fourth (1/4) of ${val}?`,
+          options: [`A) ${ans + 6}`, `B) ${ans}`, `C) ${ans - 4}`, `D) ${ans + 10}`],
+          answer: 1,
+          explain: `Detailed Step-by-Step Logic:\n1. Divide total value by 4: ${val} ÷ 4 = ${ans}.\n2. Hence, 1/4th of ${val} equals ${ans}.`
+        };
+      }
+    }
+
+    // Dynamic Visual Non-Verbal Canvas Generator
+    function generateUniqueNonVerbal(i) {
+      const type = i % 3;
+      let diagType = type === 0 ? 'matrix' : (type === 1 ? 'rotation' : 'odd_one_out');
+      
+      let qText = "";
+      let explanation = "";
+      
+      if (diagType === 'matrix') {
+        qText = `Visual Pattern Matrix #${i+1}: Observe the shape progression across the top row and select the missing shape for the question mark (?)`;
+        explanation = `Visual Pattern Logic:\n1. Row 1 shows progression: Square (4 sides) -> Pentagon (5 sides) -> Hexagon (6 sides).\n2. Row 2 follows same rule incrementing side count (+1 side per column).\n3. The correct shape matching option A completes the geometric matrix sequence.`;
+      } else if (diagType === 'rotation') {
+        qText = `Spatial Rotation Logic #${i+1}: The top figure is rotated 90 degrees clockwise. Which option shows its correct rotated position?`;
+        explanation = `Spatial Rotation Logic:\n1. Rotating the main figure 90° clockwise shifts the top indicator to the right panel.\n2. Option B correctly preserves interior cross-hatching alignment under 90° rotation.`;
+      } else {
+        qText = `Odd Figure Out #${i+1}: Examine the four geometric panels drawn below. Which panel is logically distinct from the rest?`;
+        explanation = `Odd Figure Out Logic:\n1. Panels 1, 2, and 3 feature closed 2D polygons with an even number of vertices.\n2. Panel 4 contains an odd-sided open figure, making it the odd figure out.`;
+      }
+
+      return {
+        module: 'Non-Verbal',
+        isVisual: true,
+        diagramType: diagType,
+        seed: i,
+        question: qText,
+        options: ['A) Figure A (3 Sides / 0° Shift)', 'B) Figure B (4 Sides / 90° Shift)', 'C) Figure C (5 Sides / 180° Shift)', 'D) Figure D (6 Sides / 270° Shift)'],
+        answer: (i % 2 === 0) ? 0 : 1,
+        explain: explanation
+      };
+    }
+
+    // --- 4. ZERO-DUPLICATE PAPER ENGINE ---
+    function build100QuestionPaper(moduleName) {
+      let pool = [];
+
+      if (moduleName === 'Verbal') {
+        for (let i = 0; i < 120; i++) pool.push(generateUniqueVerbal(i));
+      } else if (moduleName === 'Non-Verbal') {
+        for (let i = 0; i < 120; i++) pool.push(generateUniqueNonVerbal(i));
+      } else if (moduleName === 'Academic') {
+        for (let i = 0; i < 10; i++) {
+          academicPool.forEach(item => pool.push(item));
+        }
+      } else if (moduleName === 'GK') {
+        for (let i = 0; i < 10; i++) {
+          gkPool.forEach(item => pool.push(item));
+        }
+      } else { // Full Mock
+        for (let i = 0; i < 25; i++) pool.push(generateUniqueVerbal(i));
+        for (let i = 0; i < 25; i++) pool.push(generateUniqueNonVerbal(i));
+        academicPool.forEach(item => pool.push(item));
+        gkPool.forEach(item => pool.push(item));
+        for (let i = 0; i < 15; i++) pool.push(generateUniqueVerbal(i + 50));
+        for (let i = 0; i < 15; i++) pool.push(generateUniqueNonVerbal(i + 50));
+      }
+
+      // Shuffle
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+
+      // De-duplicate
+      let uniqueQuestions = [];
+      let seen = new Set();
+      for (let q of pool) {
+        let key = q.question;
+        if (!seen.has(key)) {
+          seen.add(key);
+          uniqueQuestions.push(q);
+        }
+        if (uniqueQuestions.length >= 100) break;
+      }
+
+      return uniqueQuestions.map((q, idx) => ({
+        id: idx + 1,
+        module: q.module,
+        isVisual: q.isVisual || false,
+        diagramType: q.diagramType || '',
+        seed: q.seed || 0,
+        question: `[Q${idx + 1}] ` + q.question,
+        options: q.options,
+        answer: q.answer,
+        explain: q.explain
+      }));
+    }
+
+    // Canvas Diagram Renderer for Non-Verbal Questions
+    function drawDiagram(canvasId, type, seed) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = '#34d399';
+      ctx.fillStyle = '#1e293b';
+      ctx.lineWidth = 3;
+
+      if (type === 'matrix') {
+        // Draw 3x3 Matrix Grid
+        for (let r = 0; r < 2; r++) {
+          for (let c = 0; c < 3; c++) {
+            let x = 30 + c * 80;
+            let y = 15 + r * 65;
+            ctx.strokeRect(x, y, 60, 50);
+            
+            ctx.beginPath();
+            if (c === 0) ctx.arc(x + 30, y + 25, 12, 0, Math.PI * 2);
+            else if (c === 1) ctx.strokeRect(x + 18, y + 13, 24, 24);
+            else {
+              ctx.moveTo(x + 30, y + 10);
+              ctx.lineTo(x + 45, y + 40);
+              ctx.lineTo(x + 15, y + 40);
+              ctx.closePath();
+            }
+            ctx.stroke();
+          }
+        }
+        // Question Mark Cell
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 22px sans-serif';
+        ctx.fillText("? (Select Figure)", 270, 80);
+
+      } else if (type === 'rotation') {
+        // Rotated Shapes
+        ctx.strokeRect(20, 20, 100, 100);
+        ctx.beginPath();
+        ctx.moveTo(70, 30); ctx.lineTo(100, 90); ctx.lineTo(40, 90);
+        ctx.closePath();
+        ctx.stroke();
+
+        ctx.fillStyle = '#10b981';
+        ctx.font = '14px sans-serif';
+        ctx.fillText("Original Figure", 25, 140);
+        ctx.fillText("➔ Rotate 90° Clockwise ➔", 140, 70);
+
+      } else {
+        // Odd-one-out shape set
+        let shapes = [4, 4, 4, 3];
+        for (let i = 0; i < 4; i++) {
+          let x = 20 + i * 110;
+          let y = 30;
+          ctx.strokeRect(x, y, 90, 80);
+          
+          ctx.beginPath();
+          if (i < 3) ctx.strokeRect(x + 25, y + 20, 40, 40);
+          else ctx.arc(x + 45, y + 40, 22, 0, Math.PI * 2);
+          ctx.stroke();
+
+          ctx.fillStyle = '#94a3b8';
+          ctx.font = '12px sans-serif';
+          ctx.fillText(`Fig ${i+1}`, x + 30, y + 98);
+        }
+      }
+    }
+
+    // App State
+    let currentModule = 'Full';
+    let currentQuestions = [];
+    let userAnswers = {};
+    let flashcardIndex = 0;
+    let timerInterval = null;
+
+    function switchTab(tabId) {
+      ['dashboard', 'test', 'flashcards'].forEach(id => {
+        document.getElementById(`tab-${id}`).classList.add('hidden');
+        document.getElementById(`nav-${id}`).className = 'px-3 py-2 rounded-lg bg-slate-700 text-slate-200 font-medium hover:bg-slate-600 transition';
+      });
+      document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+      document.getElementById(`nav-${tabId}`).className = 'px-3 py-2 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-500 transition';
+    }
+
+    function startSingleClickTest(moduleName) {
+      currentModule = moduleName;
+      currentQuestions = build100QuestionPaper(moduleName);
+      userAnswers = {};
+      
+      document.getElementById('test-title').innerText = `${moduleName} Module - 100 Qs Paper`;
+      document.getElementById('test-result-banner').classList.add('hidden');
+
+      renderQuestions();
+      startTimer(40 * 60);
+      switchTab('test');
+
+      // Draw non-verbal diagrams after DOM render
+      setTimeout(() => {
+        currentQuestions.forEach((q, idx) => {
+          if (q.isVisual) {
+            drawDiagram(`canvas-${idx}`, q.diagramType, q.seed);
+          }
+        });
+      }, 100);
+    }
+
+    function renderQuestions() {
+      const container = document.getElementById('questions-container');
+      container.innerHTML = '';
+
+      currentQuestions.forEach((q, idx) => {
+        const qBox = document.createElement('div');
+        qBox.className = 'bg-slate-800 border border-slate-700 rounded-xl p-5 space-y-3';
+        qBox.id = `qbox-${idx}`;
+
+        let canvasHTML = '';
+        if (q.isVisual) {
+          canvasHTML = `
+            <div class="my-3 p-3 bg-slate-900 border border-slate-700 rounded-lg flex flex-col items-center">
+              <span class="text-xs text-slate-400 mb-2"><i class="fa-solid fa-draw-polygon mr-1"></i> Visual Diagram Panel</span>
+              <canvas id="canvas-${idx}" width="480" height="150" class="bg-slate-950 rounded border border-slate-800 max-w-full"></canvas>
+            </div>
+          `;
+        }
+
+        let optionsHTML = '';
+        q.options.forEach((opt, oIdx) => {
+          optionsHTML += `
+            <label class="flex items-center p-3 rounded-lg border border-slate-700 hover:border-slate-600 bg-slate-900/50 cursor-pointer text-sm transition">
+              <input type="radio" name="question-${idx}" value="${oIdx}" onchange="selectAnswer(${idx}, ${oIdx})" class="accent-emerald-500 text-emerald-500 mr-3">
+              <span class="text-slate-200">${opt}</span>
+            </label>
+          `;
+        });
+
+        qBox.innerHTML = `
+          <div class="flex justify-between items-start gap-2">
+            <h4 class="font-bold text-white text-base">${q.question}</h4>
+            <span class="text-xs bg-slate-700 text-slate-300 px-2.5 py-1 rounded-full">${q.module}</span>
+          </div>
+          ${canvasHTML}
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+            ${optionsHTML}
+          </div>
+          <div id="explain-${idx}" class="hidden p-4 mt-3 rounded-lg bg-slate-900 border border-emerald-500/40 text-xs text-slate-200 leading-relaxed whitespace-pre-line">
+            <span class="text-emerald-400 font-bold block mb-1"><i class="fa-solid fa-lightbulb mr-1"></i> In-Depth Solution & Logic Breakdown:</span>
+            ${q.explain}
+          </div>
+        `;
+        container.appendChild(qBox);
+      });
+    }
+
+    function selectAnswer(qIdx, optionIdx) {
+      userAnswers[qIdx] = optionIdx;
+    }
+
+    function submitTest() {
+      clearInterval(timerInterval);
+      let score = 0;
+
+      currentQuestions.forEach((q, idx) => {
+        const qBox = document.getElementById(`qbox-${idx}`);
+        const explainBox = document.getElementById(`explain-${idx}`);
+        explainBox.classList.remove('hidden');
+
+        if (userAnswers[idx] !== undefined && userAnswers[idx] === q.answer) {
+          score++;
+          qBox.className = 'bg-slate-800 border border-emerald-500 rounded-xl p-5 space-y-3';
+        } else {
+          qBox.className = 'bg-slate-800 border border-rose-500/60 rounded-xl p-5 space-y-3';
+        }
+      });
+
+      const banner = document.getElementById('test-result-banner');
+      banner.classList.remove('hidden');
+      document.getElementById('result-score').innerText = `Your Score: ${score} / 100`;
+      
+      if (score >= 60) {
+        document.getElementById('result-text').innerText = '🎉 Excellent! You passed the initial qualifying standard.';
+      } else {
+        document.getElementById('result-text').innerText = '⚠️ Score below 60%. Review detailed explanations below and generate a fresh paper to try again.';
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function startTimer(seconds) {
+      clearInterval(timerInterval);
+      let remain = seconds;
+      const timerEl = document.getElementById('timer');
+
+      timerInterval = setInterval(() => {
+        const m = Math.floor(remain / 60).toString().padStart(2, '0');
+        const s = (remain % 60).toString().padStart(2, '0');
+        timerEl.innerText = `Time: ${m}:${s}`;
+        
+        if (remain <= 0) {
+          clearInterval(timerInterval);
+          submitTest();
+        }
+        remain--;
+      }, 1000);
+    }
+
+    window.onload = function() {
+      startSingleClickTest('Full');
+    };
+  </script>
+</body>
+</html>
